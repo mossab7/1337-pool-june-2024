@@ -89,10 +89,3 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	}
 	return (addr);
 }
-/*
-int main(void)
-{
-	char str[] = "hello world! n\nigg\tas";
-	ft_print_memory(str, sizeof(str) - 1);
-}
-*/
