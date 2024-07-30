@@ -33,7 +33,7 @@ int	number_lenght(long number, int base_len)
 	return (len);
 }
 
-char	*itoi_base(long nbr, char *base, int base_len)
+char	*itoa_base(long nbr, char *base, int base_len)
 {
 	int		nbr_len;
 	int		is_negative;
@@ -75,5 +75,5 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (base_to_len < 2)
 		return (0);
 	number = atoi_base(nbr, base_from, base_from_len);
-	return (itoi_base(number, base_to, base_to_len));
+	return (itoa_base(number, base_to, base_to_len));
 }
