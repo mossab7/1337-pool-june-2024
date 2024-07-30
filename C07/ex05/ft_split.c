@@ -54,7 +54,7 @@ void	cpy(char *src, char *dest, int size)
 	dest[i] = '\0';
 }
 
-int	word_count(char *str, char *charset)
+int	words_count(char *str, char *charset)
 {
 	int	len;
 	int	i;
@@ -80,7 +80,7 @@ char	**ft_split(char *str, char *charset)
 	int		strlen;
 	char	**strptr;
 
-	j = word_count(str, charset);
+	j = words_count(str, charset);
 	strptr = (char **)malloc((j + 1) * sizeof(char *));
 	if (strptr == NULL)
 		return (NULL);
