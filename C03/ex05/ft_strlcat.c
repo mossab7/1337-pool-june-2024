@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	str_len(char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 
@@ -30,8 +30,8 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	unsigned int	i;
 
 	i = 0;
-	lensrc = str_len(src);
-	lendest = str_len(dest);
+	lensrc = ft_strlen(src);
+	lendest = ft_strlen(dest);
 	if (!dest || !src)
 		return (0);
 	if (size <= lendest)
