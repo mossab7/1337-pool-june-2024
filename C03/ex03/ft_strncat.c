@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	lenght(char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 
@@ -29,7 +29,7 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	if (!src || !dest)
 		return (dest);
 	original = dest;
-	destlen = lenght(dest);
+	destlen = ft_strlen(dest);
 	i = 0;
 	while (*src && i < nb)
 	{
