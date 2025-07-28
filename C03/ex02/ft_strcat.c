@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	lenght(char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 
@@ -26,7 +26,7 @@ char	*ft_strcat(char *dest, char *src)
 	char	*original;
 
 	original = dest;
-	destlen = lenght(dest);
+	destlen = ft_strlen(dest);
 	while (*src)
 	{
 		*(dest + destlen) = *src;
