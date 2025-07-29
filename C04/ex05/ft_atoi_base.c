@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-int	blen(char *base)
+int	ft_strlen(char *base)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ int	blen(char *base)
 	return (len);
 }
 
-int	ft_index(char digit, char *base)
+int	get_base_index(char digit, char *base)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ int	valid_base(char *base)
 	int	i;
 	int	j;
 
-	len = blen(base);
+	len = ft_strlen(base);
 	i = 0;
 	j = 0;
 	if (len < 2)
@@ -74,7 +74,7 @@ int	ft_atoi_base(char *str, char *base)
 	i = 0;
 	result = 0;
 	sign = 1;
-	len = blen(base);
+	len = ft_strlen(base);
 	if (!(valid_base(base)))
 		return (0);
 	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
@@ -84,7 +84,7 @@ int	ft_atoi_base(char *str, char *base)
 			sign *= -1;
 	while (str[i])
 	{
-		base_value = ft_index(str[i++], base);
+		base_value = get_base_index(str[i++], base);
 		if (base_value == -1)
 			return (result * sign);
 		result = (result * len) + base_value;
