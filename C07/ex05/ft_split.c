@@ -9,9 +9,10 @@
 /*   Updated: 2024/07/10 20:16:22 by mbouhia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdlib.h>
 
-int	is_sep(char c, char *charset)
+int	is_sep(char c, const char *charset)
 {
 	int	i;
 
@@ -25,7 +26,7 @@ int	is_sep(char c, char *charset)
 	return (0);
 }
 
-int	word_len(int *i, char *str, char *charset)
+int	word_len(const char *str, const char *charset, int *i)
 {
 	int	len;
 
@@ -40,64 +41,73 @@ int	word_len(int *i, char *str, char *charset)
 	return (len);
 }
 
-void	cpy(char *src, char *dest, int size)
+void	ft_strncpy(char *dest, const char *src, int n)
 {
 	int	i;
 
 	i = 0;
-	while (src[i] && size)
+	while (i < n)
 	{
 		dest[i] = src[i];
 		i++;
-		size--;
 	}
 	dest[i] = '\0';
 }
 
-int	words_count(char *str, char *charset)
+int	words_count(const char *str, const char *charset)
 {
-	int	len;
+	int	count;
 	int	i;
 
-	len = 0;
+	count = 0;
 	i = 0;
 	while (str[i])
 	{
 		while (str[i] && is_sep(str[i], charset))
 			i++;
-		if (str[i] && !(is_sep(str[i], charset)))
-			len++;
-		while (str[i] && !(is_sep(str[i], charset)))
+		if (str[i] && !is_sep(str[i], charset))
+			count++;
+		while (str[i] && !is_sep(str[i], charset))
 			i++;
 	}
-	return (len);
+	return (count);
+}
+
+void	free_all(char **arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+		free(arr[i++]);
+	free(arr);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	int		j;
+	char	**res;
 	int		i;
-	int		strlen;
-	char	**strptr;
+	int		j;
+	int		len;
+	int		word_start;
 
-	j = words_count(str, charset);
-	strptr = (char **)malloc((j + 1) * sizeof(char *));
-	if (strptr == NULL)
+	res = malloc((words_count(str, charset) + 1) * sizeof(char *));
+	if (!res)
 		return (NULL);
-	j = 0;
 	i = 0;
+	j = 0;
 	while (str[i])
 	{
-		while (str[i] && is_sep(str[i], charset))
-			i++;
-		if (!str[i])
-			break ;
-		strlen = word_len(&i, str, charset);
-		strptr[j] = (char *)malloc((strlen + 1) * sizeof(char));
-		if (strptr[j] == NULL)
-			return (NULL);
-		cpy(&str[i - strlen], strptr[j++], strlen);
+		len = word_len(str, charset, &i);
+		if (len > 0)
+		{
+			word_start = i - len;
+			res[j] = malloc((len + 1) * sizeof(char));
+			if (!res[j])
+				return (free_all(res, j), NULL);
+			ft_strncpy(res[j++], &str[word_start], len);
+		}
 	}
-	strptr[j] = NULL;
-	return (strptr);
+	res[j] = NULL;
+	return (res);
 }
