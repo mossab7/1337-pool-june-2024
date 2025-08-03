@@ -79,8 +79,8 @@ void	free_all(char **arr, int size)
 
 	i = 0;
 	while (i < size)
-		free(arr[i++]);
-	free(arr);
+		free(arr[i++]); //forbidden function 
+	free(arr); //forbidden function 
 }
 
 char	**ft_split(char *str, char *charset)
@@ -104,7 +104,7 @@ char	**ft_split(char *str, char *charset)
 			word_start = i - len;
 			res[j] = malloc((len + 1) * sizeof(char));
 			if (!res[j])
-				return (free_all(res, j), NULL);
+				return (free_all(res, j), NULL); //leaks are NOT needed to be handled for this exercise
 			ft_strncpy(res[j++], &str[word_start], len);
 		}
 	}
