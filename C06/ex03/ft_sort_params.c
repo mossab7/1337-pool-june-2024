@@ -25,7 +25,7 @@ void	ft_swap(char **s1, char **s2)
 	*s2 = temp;
 }
 
-int	str_cmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ void	ft_sort(char **av, int size)
 		j = 0;
 		while (j < size - i - 1)
 		{
-			if (str_cmp(av[j], av[j + 1]) > 0)
+			if (ft_strcmp(av[j], av[j + 1]) > 0)
 			{
 				ft_swap (&av[j], &av[j + 1]);
 			}
